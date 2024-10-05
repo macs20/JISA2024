@@ -1,0 +1,36 @@
+test:
+  name: attendance-contract-benchmark
+  description: An experimental benchmark for attendance network
+  workers:
+    type: local
+    number: 1
+  rounds:
+    - label: createAttendance
+      description: Create attendance benchmark
+      txNumber: 1000
+      rateControl: { type: "linear-rate", opts: { startingTps: 50, finishingTps: 200 } }
+      workload:
+        module: workload/createAttendance.js
+        arguments:
+          contractId: attendance
+#    - label: readAttendance
+#      description: Read attendance benchmark
+#      txNumber: 1000
+#      rateControl: { type: "linear-rate", opts: { startingTps: 50, finishingTps: 200 } }
+#      workload:
+#        module: workload/readAttendance.js
+#        arguments:
+#          assets: 10
+#          contractId: attendance
+
+monitors:
+  resource:
+    - module: docker
+      options:
+        interval: 4
+        containers:
+          [
+            "peer0.org1.example.com",
+            "peer0.org2.example.com",
+            "orderer.example.com",
+          ]
