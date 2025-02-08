@@ -1,0 +1,69 @@
+** ============
+** Dependences
+** ============
+
+** Hyperbedger Caliper
+
+	git clone https://github.com/hyperledger/caliper-benchmarks.git
+
+** Credo Framework
+
+	sudo npm install --global yarn
+
+	yarn add @credo-ts/core@^0.5.3 @credo-ts/node@^0.5.3
+
+** ==================================
+** Commands Execution  - Experiment I
+** ==================================
+
+vagrant up
+
+#login: vagrant
+#pwd: vagrant
+
+vagrant ssh
+
+cd mount
+
+cd fabric-samples/test-network
+
+*** CA Network ***
+
+	./network.sh up createChannel -ca 
+
+*** Non-CA Network **
+
+	./network.sh up createChannel -ca 
+
+./network.sh deployCC -ccn attendance -ccp ../asset-transfer-basic/chaincode-javascript -ccl javascript
+
+cd ...
+
+cd caliper-privatedata
+
+npx caliper launch manager --caliper-workspace ./ --caliper-networkconfig networks/networkConfig.yaml --caliper-benchconfig benchmarks/attendanceBenchmark.yaml --caliper-flow-only-test --caliper-fabric-gateway-enabled
+
+** ===================================
+** Commands Execution  - Experiment II
+** ===================================
+
+npm init -y 
+
+npm install -D typescript 
+
+npm install -D ts-node 
+
+npm i -D tsx
+npx tsx src/index.ts
+
+//configurar typescript
+npx tsc --init
+
+//executar typescript
+npx tsx src/index.ts 
+
+//executar javascript gerado a partir do typescript
+node ./dist/index.js
+
+projcredo4 npx tsc
+projcredo4 npx tsx ./src/agentUSP_Stud.ts
